@@ -31,7 +31,7 @@ App.listen(port, () => {
   console.log("server listening !");
 });
 
-const allowedOrigins = ['https://rent-a-ride-two.vercel.app', 'http://localhost:5173', 'http://13.50.244.131:5173'] ; // Add allowed origins here
+const allowedOrigins = ['https://rent-a-ride-two.vercel.app', 'http://localhost:5173', 'http://13.50.244.131:5173' , 'http://16.171.104.76:5173'] ; // Add allowed origins here
 
 App.use(
   cors({
