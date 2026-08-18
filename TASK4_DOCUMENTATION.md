@@ -4,6 +4,9 @@
 **Environment:** AWS EC2, Ubuntu, eu-north-1 (Stockholm), t3.small, Elastic IP: 16.171.104.76
 **Branch:** feature/task04-volume-network
 
+# Architecture Aws+Docker
+![architecture Aws+Docker](https://github.com/804ahmedkhan07-oss/Rent-A-Ride-Cloud-DevOps/blob/dev/architecture%20aws%20%2B%20docker_nginx_reverse_proxy.png)
+
 ## Objective
 
 Create a Docker volume to persist database data, create a Docker network so
