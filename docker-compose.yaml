@@ -1,0 +1,30 @@
+services:
+  mongodb:
+    image: mongo:7
+    volumes:
+      - mongodb-data:/data/db
+    restart: always
+
+  backend:
+    image: ahmedmateen07/rent-a-ride-backend:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - mongo_uri=mongodb://mongodb:27017/rent-a-ride
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - REFRESH_TOKEN=${REFRESH_TOKEN} 
+    depends_on:
+      - mongodb
+    restart: always
+
+  frontend:
+    image: ahmedmateen07/rent-a-ride-frontend:latest
+    ports:
+      - "5173:8080"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  mongodb-data:
+    external: true
