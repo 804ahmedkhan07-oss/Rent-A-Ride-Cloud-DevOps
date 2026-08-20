@@ -20,8 +20,8 @@ pipeline {
             steps {
                 echo 'Building images and pushing to Docker Hub'
                 withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker compose build'
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin || true'
                     sh 'docker compose push || true'
                 }
             }
