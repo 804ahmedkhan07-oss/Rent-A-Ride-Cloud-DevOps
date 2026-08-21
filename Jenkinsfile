@@ -21,8 +21,8 @@ pipeline {
                 echo 'Building images and pushing to Docker Hub'
                 withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'docker compose build'
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin || true'
-                    sh 'docker compose push || true'
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    sh 'docker compose push'
                 }
             }
         }
@@ -44,6 +44,7 @@ pipeline {
         }
         success {
             echo 'Pipeline completed successfully'
+
         }
     }
 }
