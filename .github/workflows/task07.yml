@@ -20,4 +20,5 @@ jobs:
       run: docker --version
     - name: Build Frontend Image
       run: docker build -t rent-a-ride-frontend:test -f client/Dockerfile .
-    
+    - name: List Docker Images
+      run: docker images
