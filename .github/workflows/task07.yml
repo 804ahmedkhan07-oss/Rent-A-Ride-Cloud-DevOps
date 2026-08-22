@@ -1,0 +1,14 @@
+name: Task07
+
+on:
+ push:
+   branches:
+     - feature/task07
+
+jobs:
+ tests:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Say Hello
+      run: echo "GitHub Actions is working!"
+  
