@@ -18,4 +18,6 @@ jobs:
       run: echo "GitHub Actions is working!"
     - name: Check Docker
       run: docker --version
-  
+    - name: Build Frontend Image
+      run: docker build -t rent-a-ride-frontend:test -f client/Dockerfile .
+    
