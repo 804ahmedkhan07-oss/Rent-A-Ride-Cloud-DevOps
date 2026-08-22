@@ -16,4 +16,6 @@ jobs:
       run: ls
     - name: Say Hello
       run: echo "GitHub Actions is working!"
+    - name: Check Docker
+      run: docker --version
   
