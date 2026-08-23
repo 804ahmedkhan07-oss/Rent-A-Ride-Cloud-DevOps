@@ -1,0 +1,65 @@
+name: Task07
+
+on:
+ push:
+   branches:
+     - feature/task07
+
+jobs:
+ tests:
+   runs-on: ubuntu-latest
+   
+   steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    - name: Check Code
+      run: ls
+    - name: Say Hello
+      run: echo "GitHub Actions is working!"
+    - name: Check Docker
+      run: docker --version
+      
+    - name: Build Frontend Image
+      run: docker build -t rent-a-ride-frontend:test -f client/Dockerfile .
+    - name: List Docker Images
+      run: docker images
+
+    - name: Build Backend Image
+      run: docker build -t rent-a-ride-backend:test -f backend/Dockerfile .
+
+    - name: List Docker Images
+      run: docker images
+
+    - name: Inspect Frontend Image
+      run: docker inspect rent-a-ride-frontend:test --format '{{.Size}} bytes'
+
+    - name: Tag Frontend Image
+      run: docker tag rent-a-ride-frontend:test ${{ secrets.DOCKERHUB_USERNAME }}/rent-a-ride-frontend:latest
+
+    - name: Tag Backend Image
+      run: docker tag rent-a-ride-backend:test ${{ secrets.DOCKERHUB_USERNAME }}/rent-a-ride-backend:latest
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+       username: ${{ secrets.DOCKERHUB_USERNAME }}
+       password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push Frontend Image
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rent-a-ride-frontend:latest
+
+    - name: Push Backend Image
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/rent-a-ride-backend:latest
+
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd ~/Rent-A-Ride-Cloud-DevOps
+          docker compose pull
+          docker compose up -d
+          docker compose ps
