@@ -51,7 +51,7 @@ once the team moved to GitHub Actions, to free up EC2 resources.
 ### New Architecture
 
 <!-- Architecture diagram to be inserted here -->
-![Architecture Diagram](./https://github.com/804ahmedkhan07-oss/Rent-A-Ride-Cloud-DevOps/blob/feature/task07/.github/githubactions-cicd-diagram.jpeg)
+![Architecture Diagram](../githubactions-cicd-diagram.jpeg)
 
 Text summary of the flow:
 
