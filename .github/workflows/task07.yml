@@ -4,6 +4,7 @@ on:
  push:
    branches:
      - feature/task07
+     - dev
 
 jobs:
  tests:
