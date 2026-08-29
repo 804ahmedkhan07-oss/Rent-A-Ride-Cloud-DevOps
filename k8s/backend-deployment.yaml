@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  namespace: rent-a-ride
+  name: backend
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+        - name: backend
+          image: ahmedmateen07/rent-a-ride-backend:latest
+          ports:
+            - containerPort: 3000
+
+          env:
+            - name: mongo_uri
+              value: mongodb://mongodb-service:27017/rent-a-ride
+
+            - name: BACKEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BACKEND_URL 
+
+            - name: REFRESH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: REFRESH_TOKEN
+
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: ACCESS_TOKEN     
