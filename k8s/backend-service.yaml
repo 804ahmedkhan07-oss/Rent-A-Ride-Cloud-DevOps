@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 
 metadata:
+  namespace: rent-a-ride
   name: backend-service
 
 spec:

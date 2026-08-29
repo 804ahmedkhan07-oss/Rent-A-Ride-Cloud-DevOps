@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
+  namespace: rent-a-ride
   name: backend
 
 spec:
@@ -26,3 +27,21 @@ spec:
           env:
             - name: mongo_uri
               value: mongodb://mongodb-service:27017/rent-a-ride
+
+            - name: BACKEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BACKEND_URL 
+
+            - name: REFRESH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: REFRESH_TOKEN
+
+            - name: ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: ACCESS_TOKEN     
