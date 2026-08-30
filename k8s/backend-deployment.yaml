@@ -23,6 +23,13 @@ spec:
           image: ahmedmateen07/rent-a-ride-backend:latest
           ports:
             - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
 
           env:
             - name: mongo_uri
