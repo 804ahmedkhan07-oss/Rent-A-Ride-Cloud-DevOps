@@ -31,6 +31,20 @@ spec:
               cpu: "500m"
               memory: "512Mi"
 
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
           env:
             - name: mongo_uri
               value: mongodb://mongodb-service:27017/rent-a-ride
