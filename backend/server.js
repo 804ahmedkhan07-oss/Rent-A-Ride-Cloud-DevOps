@@ -20,6 +20,11 @@ App.use(cookieParser())
 dotenv.config();
 const port = 3000;
 
+App.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
+
 mongoose
   .connect(process.env.mongo_uri)
   .then(console.log("connected"))
