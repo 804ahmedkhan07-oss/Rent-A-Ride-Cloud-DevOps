@@ -1,0 +1,6 @@
+Rent-A-Ride application has been deployed.
+
+Run these commands to check status:
+  kubectl get pods -n {{ .Values.namespace }}
+  kubectl get svc -n {{ .Values.namespace }}
+  kubectl get ingress -n {{ .Values.namespace }}
