@@ -1,0 +1,53 @@
+namespace: rent-a-ride
+
+backend:
+  replicaCount: 1
+  image:
+    repository: ahmedmateen07/rent-a-ride-backend
+    tag: latest
+  port: 3000
+  mongoUri: "mongodb://mongodb-service:27017/rent-a-ride"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+frontend:
+  replicaCount: 1
+  image:
+    repository: ahmedmateen07/rent-a-ride-frontend
+    tag: latest
+  port: 8080
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+mongodb:
+  replicaCount: 1
+  image: mongo:7
+  port: 27017
+  storage: 1Gi
+  storageClassName: standard
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 6
+  targetCPUUtilization: 50
+
+ingress:
+  enabled: true
+  className: nginx
+
+configMap:
+  backendUrl: "http://backend-service:3000"
+
+secrets:
+  accessToken: "secret_access_token_rent_a_ride_12345"
+  refreshToken: "secret_refresh_token_rent_a_ride_67890"
