@@ -4,6 +4,9 @@ metadata:
   name: backend-hpa
   namespace: {{ .Values.namespace }}
 spec:
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 0
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
