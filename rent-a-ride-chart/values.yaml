@@ -1,7 +1,7 @@
 namespace: rent-a-ride
 
 backend:
-  replicaCount: 2
+  replicaCount: 1
   image:
     repository: ahmedmateen07/rent-a-ride-backend
     tag: latest
@@ -30,7 +30,7 @@ frontend:
       memory: "512Mi"
 
 mongodb:
-  replicaCount: 2
+  replicaCount: 1
   image: mongo:7
   port: 27017
   storage: 1Gi
