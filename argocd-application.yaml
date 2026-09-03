@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rent-a-ride
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: backend=ahmedmateen07/rent-a-ride-backend,frontend=ahmedmateen07/rent-a-ride-frontend
+    argocd-image-updater.argoproj.io/backend.update-strategy: newest-build
+    argocd-image-updater.argoproj.io/backend.helm.image-name: backend.image.repository
+    argocd-image-updater.argoproj.io/backend.helm.image-tag: backend.image.tag
+    argocd-image-updater.argoproj.io/frontend.update-strategy: newest-build
+    argocd-image-updater.argoproj.io/frontend.helm.image-name: frontend.image.repository
+    argocd-image-updater.argoproj.io/frontend.helm.image-tag: frontend.image.tag
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/804ahmedkhan07-oss/Rent-A-Ride-Cloud-DevOps
+    targetRevision: dev
+    path: rent-a-ride-chart
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rent-a-ride
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
