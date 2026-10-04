@@ -192,7 +192,7 @@ Prometheus successfully collected:
 * Kubernetes/node metrics
 
 > **Screenshot 01 — Prometheus Targets**
-> *Insert Prometheus Targets screenshot here.*
+> *![Prometheus Targets](./https://github.com/804ahmedkhan07-oss/Rent-A-Ride-Cloud-DevOps/blob/feature/task18-monitoring/docs/Screenshot%202026-10-03%2010.24.07%20PM.png).*
 
 ---
 
@@ -231,7 +231,7 @@ Memory Usage: ~266 MiB
 ```
 
 > **Screenshot 02 — Grafana Rent-A-Ride Dashboard**
-> *Insert Grafana dashboard screenshot here.*
+> *[Grafana Rent-A-Ride Dashboard](./docs/Screenshot 2026-10-03 10.23.17 PM.png).*
 
 ---
 
